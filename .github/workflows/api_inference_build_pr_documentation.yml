@@ -19,3 +19,19 @@ jobs:
       package_name: inference-providers
       path_to_docs: hub-docs/docs/inference-providers/
       additional_args: --not_python_module
+      import { defineConfig } from 'vite';
+
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000, // Increase limit to 1000 kB (adjust as needed)
+  },
+});
