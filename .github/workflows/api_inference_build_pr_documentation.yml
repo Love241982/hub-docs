@@ -19,3 +19,15 @@ jobs:
       package_name: inference-providers
       path_to_docs: hub-docs/docs/inference-providers/
       additional_args: --not_python_module
+export default {
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom'] // Example chunking
+        }
+      },
+      chunkSizeWarningLimit: 600 // Adjust the warning threshold
+    }
+  }
+};
